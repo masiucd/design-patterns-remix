@@ -8,39 +8,51 @@
  * @returns {number}
  */
 
-function countingValleys(n, s) {
+function countingValleyX(n, s) {
   const min = 2;
-  const max = 1000000;
-  let findValley = false;
+  const max = 10 ** 6;
   let valleysCount = 0;
-  if (n < min || n > max) return undefined;
+  let foundAValley = false;
 
-  const strArray = typeof s === 'string' ? s.split('') : '';
-  const numArray = s.split('').map(x => (x === 'U' ? 1 : -1));
-
+  const strArray = s.split('');
   if (
-    s.length >= min &&
+    strArray.length >= min &&
     s.length <= max &&
     n >= min &&
     n <= max &&
     n === strArray.length
   ) {
+    const stepsArray = s.split('').map(x => (x === 'U' ? 1 : -1));
     let path = 0;
-    for (let i = 0; i < numArray.length; i += 1) {
-      path += numArray[i];
-      if (path < 0 && !findValley) {
-        findValley = true;
+    for (let val in stepsArray) {
+      path += stepsArray[val];
+      if (path < 0 && !foundAValley) {
+        foundAValley = true;
       }
-      if (path === 0 && findValley) {
+      if (path === 0 && foundAValley) {
         valleysCount += 1;
-        findValley = false;
+        foundAValley = false;
       }
     }
   }
   return valleysCount;
 }
+/**
+ *
+ * @param {number} n
+ * @param {string} s
+ * @returns {number}
+ */
 
-console.log(countingValleys(8, 'UDDDUDUU')); // 1
+function countingValleys(n, s) {
+  const min = 2;
+  const max = 6000000;
+
+  const strArr = s.split('');
+  console.log(strArr);
+}
+
+console.log(countingValleys(12, 'DDUUDDUDUUUD'));
 // U = Upp
 // D = Down
 // 8
