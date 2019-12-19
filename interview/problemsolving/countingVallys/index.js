@@ -47,12 +47,28 @@ function countingValleyX(n, s) {
 function countingValleys(n, s) {
   const min = 2;
   const max = 6000000;
-
+  let foundValley = false;
+  let valleyCount = 0;
   const strArr = s.split('');
-  console.log(strArr);
+  if (strArr.length >= min && strArr.length <= max && n >= min && n <= max) {
+    s = s
+      .split('')
+      .map(x => (x === 'U' ? 1 : -1))
+      .reduce((prev, next) => {
+        if (prev < 0 && !foundValley) {
+          foundValley = true;
+        }
+        if (prev + next === 0 && foundValley) {
+          valleyCount += 1;
+          foundValley = false;
+        }
+        return prev + next;
+      });
+  }
+  return valleyCount;
 }
 
-console.log(countingValleys(12, 'DDUUDDUDUUUD'));
+console.log(countingValleys(8, 'UDDDUDUU'));
 // U = Upp
 // D = Down
 // 8
