@@ -4,7 +4,7 @@
  * @returns {number}
  */
 function jumpingOnClouds(c) {
-  
+  //
 }
 
 // if 2 zeros in a row then jup one of the zeros
