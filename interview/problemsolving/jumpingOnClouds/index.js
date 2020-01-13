@@ -9,7 +9,9 @@ function jumpingOnClouds(c) {
   let i = 0;
   // console.log(c.length - 1);
   while (i + 2 === c.length || i < c.length - 1) {
+    // console.log(i + 2);
     if (c[i + 2] === 1) {
+      // console.log('c[i+2]', c[i + 2]);
       i += 1;
       steps += 1;
     } else {
@@ -28,4 +30,4 @@ const x = [0, 0, 0, 0, 1, 0]; // 3
 const y = [0, 0, 1, 0, 0, 1, 0]; // 4
 
 console.log(jumpingOnClouds(x));
-console.log(jumpingOnClouds(y));
+// console.log(jumpingOnClouds(y));
