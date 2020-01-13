@@ -7,6 +7,7 @@
 function jumpingOnClouds(c) {
   let steps = 0;
   let i = 0;
+  // console.log(c.length - 1);
   while (i + 2 === c.length || i < c.length - 1) {
     if (c[i + 2] === 1) {
       i += 1;
@@ -16,7 +17,6 @@ function jumpingOnClouds(c) {
       steps += 1;
     }
   }
-
   return steps;
 }
 
