@@ -18,8 +18,8 @@ function equalizeArray(arr) {
       trashCan.push(arr[i]);
     }
   }
-  console.log(numFrequency);
-  console.log(trashCan);
+  // console.log(numFrequency);
+  // console.log(trashCan);
 
   return trashCan.length;
 }
