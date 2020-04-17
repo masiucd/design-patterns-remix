@@ -1,4 +1,4 @@
-function regex(S: String) {
+function regex(S) {
   const re = /^\D[^aeiou][^bcDF]\S[^AEIOU][^\,.]$/;
 
   return re.test(S);
