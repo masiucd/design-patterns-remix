@@ -3,8 +3,8 @@
  * @param {string} str
  */
 const charRange = str => {
-  const re = /^[a-z][1-9][^a-z][^A-Z][A-Z]$/;
-  const re2 = /(^[a-z][1-9][^a-z][^A-Z][A-Z].*$)/;
+  const re = /^[a-z][1-9][^a-z][^A-Z][A-Z].*$/;
+  return re.test(str);
 };
 
 console.log(charRange('h4CkRank')); // true
@@ -16,3 +16,7 @@ console.log(charRange('q9$?WWe')); // true
 // The third character must not be a lowercase English alphabetic character.
 // The fourth character must not be an uppercase English alphabetic character.
 // The fifth character must be an uppercase English alphabetic character.
+
+module.exports = {
+  charRange,
+};
