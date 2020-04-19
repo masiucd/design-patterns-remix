@@ -1,8 +1,4 @@
-/**
- *
- * @param {string} str
- */
-const mathRegex = str => {
+const mathRegex = (str: string) => {
   const re = /^...\....\....\....$/g;
   return re.test(str);
 };

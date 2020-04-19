@@ -2,7 +2,7 @@
  *
  * @param {string} input
  */
-function processData(input) {
+function processData(input: string) {
   const re = /^hackerrank.+/;
   const re2 = /.+hackerrank$/g;
   const re3 = /^hackerrank(.*hackerrank)?$/;

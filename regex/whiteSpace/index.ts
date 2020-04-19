@@ -1,8 +1,4 @@
-/**
- *
- * @param {string} s
- */
-function regex(s) {
+function regex(s: string) {
   const re = /^\S{2,}\s\S{2}\s\S{2}/;
   return re.test(s);
 }
