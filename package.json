@@ -1,0 +1,8 @@
+{
+  "name": "crud_graphql",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/masiuciszek/HackerRank.git",
+  "author": "Masiu <ciszekmarcell@gmail.com>",
+  "license": "MIT"
+}
