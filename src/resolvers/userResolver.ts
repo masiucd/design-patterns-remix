@@ -1,4 +1,4 @@
-import { Field, ID, Mutation, ObjectType, Query, Resolver } from "type-graphql";
+import { Field, ID, ObjectType, Query, Resolver } from "type-graphql";
 
 @ObjectType()
 class User {
