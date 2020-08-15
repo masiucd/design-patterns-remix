@@ -4,5 +4,24 @@
   "main": "index.js",
   "repository": "https://github.com/masiuciszek/HackerRank.git",
   "author": "Masiu <ciszekmarcell@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "scripts": {
+    "start": "nodemon --exec ts-node src/index.ts"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.7",
+    "@types/node": "^14.0.27",
+    "nodemon": "^2.0.4",
+    "ts-node": "^8.10.2",
+    "typescript": "^3.9.7"
+  },
+  "dependencies": {
+    "apollo-server-express": "^2.16.1",
+    "express": "^4.17.1",
+    "graphql": "^15.3.0",
+    "reflect-metadata": "^0.1.13",
+    "sqlite3": "^5.0.0",
+    "type-graphql": "^1.0.0-rc.3",
+    "typeorm": "^0.2.25"
+  }
 }
