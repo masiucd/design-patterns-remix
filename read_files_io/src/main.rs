@@ -1,7 +1,26 @@
+use std::fmt;
+
 use serde_derive::{ Deserialize, Serialize };
 use tabled::{ Table, Tabled };
 
 mod read_files;
+
+#[derive(Debug)]
+enum FoodType {
+    Main,
+    Side,
+    Drink,
+}
+
+impl fmt::Display for FoodType {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        match self {
+            FoodType::Main => write!(f, "Main"),
+            FoodType::Side => write!(f, "Side"),
+            FoodType::Drink => write!(f, "Drink"),
+        }
+    }
+}
 
 #[derive(Deserialize, Debug, Serialize, Tabled)]
 struct Food {
@@ -71,4 +90,7 @@ fn main() {
     } else {
         println!("Please provide a valid input path (json or text)");
     }
+
+    let x = FoodType::Main;
+    println!("{}", x)
 }
