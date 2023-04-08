@@ -1,31 +1,46 @@
-use std::{ fs, collections::HashMap };
+use serde_derive::{ Deserialize, Serialize };
+mod read_files;
+
+#[derive(Deserialize, Debug, Serialize)]
+enum FoodType {
+    Main,
+    Side,
+    Drink,
+}
+
+#[derive(Deserialize, Debug, Serialize)]
+struct Food {
+    name: String,
+    price: f32,
+    description: String,
+    food_type: FoodType,
+}
+
+#[derive(Deserialize, Debug, Serialize)]
+struct City {
+    name: String,
+    country: String,
+    population: u32,
+}
+
+#[derive(Deserialize, Serialize, Debug)]
+struct JsonData {
+    foods: Vec<Food>,
+    cities: Vec<City>,
+}
 
 fn main() {
-    let file = read_text_file("text.txt");
-    let mut placeholders = HashMap::new();
-    placeholders.insert("<name>", "Marcell");
-    placeholders.insert("<year>", "28");
-    placeholders.insert("<country>", "Sweden");
-    placeholders.insert("<job>.", "Programmer");
-    let file = replace_placeholders(&file, &mut placeholders);
-    println!("{}", file);
-}
+    // get input path
+    // run cargo run <json or text>
+    let input_path = std::env::args().nth(1).unwrap();
+    if input_path.trim() == "json" {
+        //read json file
 
-fn read_text_file(path: &str) -> String {
-    let file = fs::read_to_string(path);
-    let file = match file {
-        Ok(file) => file,
-        Err(error) => format!("Error: {}", error),
-    };
-    file
-}
-
-fn replace_placeholders(text: &str, placeholders: &mut HashMap<&str, &str>) -> String {
-    text.to_string()
-        .split(" ")
-        .map(|x| {
-            if placeholders.contains_key(x) { placeholders.get(x).unwrap() } else { x }
-        })
-        .collect::<Vec<&str>>()
-        .join(" ")
+        let file = std::fs::read_to_string("data.json").unwrap();
+        let data: JsonData = serde_json::from_str(&file).unwrap();
+    } else if input_path.trim() == "text" {
+        //read text file
+    } else {
+        println!("Please provide a valid input path (json or text)");
+    }
 }
