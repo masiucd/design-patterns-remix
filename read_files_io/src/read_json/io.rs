@@ -4,6 +4,7 @@ use serde_derive::{ Deserialize, Serialize };
 use tabled::{ Table, Tabled };
 
 #[derive(Debug)]
+#[allow(dead_code)]
 enum FoodType {
     Main,
     Side,
