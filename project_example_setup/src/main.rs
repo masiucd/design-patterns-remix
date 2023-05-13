@@ -1,11 +1,12 @@
-use crate::animals::dog::Dog;
-pub mod animals;
+// use crate::animals::dog::Dog;
+// pub mod animals;
+mod animals;
 
 // project_example_setup is the name of the project, and math is the name of the module.
 use project_example_setup::mcd;
 
 fn main() {
-    let bobby = Dog {
+    let bobby = animals::dog::Dog {
         name: String::from("Bobby"),
         age: 8,
     };
