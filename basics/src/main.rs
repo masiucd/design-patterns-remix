@@ -1,39 +1,53 @@
-#[derive(Debug)]
-struct Person {
-    name: String,
-    age: usize,
-}
-
-enum Something {
-    String(String),
-    Number(usize),
-    Person(Person),
+enum Currency {
+    PLN,
+    SEK,
+    USD,
 }
 
 fn main() {
-    let text_file = std::fs::read_to_string("file.txt");
+    // get the users input
+    let mut amount_of_money = String::new();
+    println!("Enter the amount of money you want to convert: ");
+    std::io::stdin().read_line(&mut amount_of_money).unwrap();
+    println!("Enter the currency you want to convert from either SEK PLN or USD: ");
+    let mut currency_from = String::new();
+    std::io::stdin().read_line(&mut currency_from).unwrap();
+    println!("Enter the currency you want to convert to either SEK PLN or USD: ");
+    let mut currency_to = String::new();
+    std::io::stdin().read_line(&mut currency_to).unwrap();
 
-    if let Ok(file) = text_file {
-        let xs = file
-            .lines()
-            .map(|x| if x.trim() == "four".trim() { "CWKS LEGIA" } else { x })
-            .collect::<Vec<&str>>()
-            .join(" - ");
-        println!("File contents: {:?}", xs);
-    } else {
-        println!("Error: {}", text_file.unwrap_err());
+    let amount_of_money: f64 = parse_to_float(amount_of_money);
+    let currency_from: Currency = parse_to_currency(currency_from);
+    let currency_to: Currency = parse_to_currency(currency_to);
+}
+
+fn parse_to_float(amount_of_money: String) -> f64 {
+    if let Ok(amount_of_money) = amount_of_money.trim().parse() {
+        return amount_of_money;
     }
+    0.0
+}
 
-    let s = Something::Person(Person {
-        name: "Jan".to_string(),
-        age: 20,
-    });
-    let s = Something::String(String::from("APA"));
-    let s = Something::Number(10);
-
-    match s {
-        Something::String(s) => println!("String: {}", s),
-        Something::Number(n) => println!("Number: {}", n),
-        Something::Person(p) => println!("Person: {:?}", p),
+fn parse_to_currency(currency: String) -> Currency {
+    match currency.trim() {
+        "SEK" => Currency::SEK,
+        "PLN" => Currency::PLN,
+        "USD" => Currency::USD,
+        _ => Currency::SEK,
     }
+}
+
+fn convert_money_from_to(amount: f64, currency_from: Currency, currency_to: Currency) -> f64 {
+    match currency_from {
+        Currency::SEK => {
+            !todo!("convert from SEK to PLN or USD");
+        }
+        Currency::PLN => {
+            !todo!("convert from PLN to SEK or USD");
+        }
+        Currency::USD => {
+            !todo!("convert from USD to SEK or PLN");
+        }
+    }
+    0.0
 }
