@@ -4,6 +4,16 @@ enum Currency {
     USD,
 }
 
+impl Currency {
+    fn to_string(&self) -> String {
+        match self {
+            Currency::PLN => "PLN".to_string(),
+            Currency::SEK => "SEK".to_string(),
+            Currency::USD => "USD".to_string(),
+        }
+    }
+}
+
 fn main() {
     // get the users input
     let mut amount_of_money = String::new();
@@ -19,6 +29,16 @@ fn main() {
     let amount_of_money: f64 = parse_to_float(amount_of_money);
     let currency_from: Currency = parse_to_currency(currency_from);
     let currency_to: Currency = parse_to_currency(currency_to);
+
+    let converted = convert_money_from_to(amount_of_money, &currency_from, &currency_to);
+
+    println!(
+        "{} {} is {} {}",
+        amount_of_money,
+        currency_from.to_string(),
+        converted,
+        currency_to.to_string()
+    );
 }
 
 fn parse_to_float(amount_of_money: String) -> f64 {
@@ -37,17 +57,46 @@ fn parse_to_currency(currency: String) -> Currency {
     }
 }
 
-fn convert_money_from_to(amount: f64, currency_from: Currency, currency_to: Currency) -> f64 {
+fn convert_money_from_to(amount: f64, currency_from: &Currency, currency_to: &Currency) -> f64 {
     match currency_from {
         Currency::SEK => {
-            !todo!("convert from SEK to PLN or USD");
+            match currency_to {
+                Currency::PLN => {
+                    return amount * 0.43;
+                }
+                Currency::USD => {
+                    return amount * 0.11;
+                }
+                _ => {
+                    return amount;
+                }
+            }
         }
         Currency::PLN => {
-            !todo!("convert from PLN to SEK or USD");
+            match currency_to {
+                Currency::SEK => {
+                    return amount * 2.33;
+                }
+                Currency::USD => {
+                    return amount * 0.26;
+                }
+                _ => {
+                    return amount;
+                }
+            }
         }
         Currency::USD => {
-            !todo!("convert from USD to SEK or PLN");
+            match currency_to {
+                Currency::SEK => {
+                    return amount * 8.86;
+                }
+                Currency::PLN => {
+                    return amount * 3.86;
+                }
+                _ => {
+                    return amount;
+                }
+            }
         }
     }
-    0.0
 }
