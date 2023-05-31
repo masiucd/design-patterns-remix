@@ -10,11 +10,11 @@ fn main() {
     );
 }
 
-const vowels: [char; 5] = ['a', 'e', 'i', 'o', 'u'];
+const VOWELS: [char; 5] = ['a', 'e', 'i', 'o', 'u'];
 fn count_vowels(word: &str) -> i32 {
     let mut count = 0;
     for alpha in word.chars() {
-        if vowels.contains(&alpha) {
+        if VOWELS.contains(&alpha) {
             count += 1;
         }
     }
