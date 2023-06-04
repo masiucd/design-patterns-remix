@@ -1,26 +1,30 @@
-[
-  {
-    "question": "What is the capital of the United States?",
-    "answer": "Washington, D.C."
-  },
-  {
-    "question": "What is the capital of Canada?",
-    "answer": "Ottawa"
-  },
-  {
-    "question": "What is the capital of Mexico?",
-    "answer": "Mexico City"
-  },
-  {
-    "question": "Who created C++?",
-    "answer": "Bjarne Stroustrup"
-  },
-  {
-    "question": "Who created Python?",
-    "answer": "Guido van Rossum"
-  },
-  {
-    "question": "Who created Java?",
-    "answer": "James Gosling"
-  }
-]
+{
+  "questions": [
+    {
+      "id": 1,
+      "question": "What is the capital of India?"
+    },
+    {
+      "id": 2,
+      "question": "What is the capital of USA?"
+    },
+    {
+      "id": 3,
+      "question": "What is the capital of UK?"
+    }
+  ],
+  "answers": [
+    {
+      "id": 1,
+      "answer": "New Delhi"
+    },
+    {
+      "id": 2,
+      "answer": "Washington DC"
+    },
+    {
+      "id": 3,
+      "answer": "London"
+    }
+  ]
+}
