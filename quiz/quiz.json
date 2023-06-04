@@ -1,0 +1,26 @@
+[
+  {
+    "question": "What is the capital of the United States?",
+    "answer": "Washington, D.C."
+  },
+  {
+    "question": "What is the capital of Canada?",
+    "answer": "Ottawa"
+  },
+  {
+    "question": "What is the capital of Mexico?",
+    "answer": "Mexico City"
+  },
+  {
+    "question": "Who created C++?",
+    "answer": "Bjarne Stroustrup"
+  },
+  {
+    "question": "Who created Python?",
+    "answer": "Guido van Rossum"
+  },
+  {
+    "question": "Who created Java?",
+    "answer": "James Gosling"
+  }
+]
