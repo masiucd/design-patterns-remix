@@ -2,29 +2,29 @@
   "questions": [
     {
       "id": 1,
-      "question": "What is the capital of India?"
+      "question": "Who won world cup in football 2022?"
     },
     {
       "id": 2,
-      "question": "What is the capital of USA?"
+      "question": "Who is the president of USA?"
     },
     {
       "id": 3,
-      "question": "What is the capital of UK?"
+      "question": "Who won world cup in football 2018?"
     }
   ],
   "answers": [
     {
       "id": 1,
-      "answer": "New Delhi"
+      "answer": "Argentina"
     },
     {
       "id": 2,
-      "answer": "Washington DC"
+      "answer": "Joe Biden"
     },
     {
       "id": 3,
-      "answer": "London"
+      "answer": "France"
     }
   ]
 }
