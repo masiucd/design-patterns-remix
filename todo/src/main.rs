@@ -1,5 +1,5 @@
 use comfy_table::Table;
-use inquire::Text;
+use inquire::{ Text, InquireError, Select };
 use serde::{ Serialize, Deserialize };
 
 use serde_json;
@@ -11,7 +11,48 @@ struct Todo {
     completed: bool,
 }
 
+fn read_todos_from_json() -> Vec<Todo> {
+    let todos = std::fs::read_to_string("todos.json").unwrap();
+    let mut todos: Vec<Todo> = serde_json::from_str(&todos).unwrap();
+    todos
+}
+
+fn build_table() -> (Vec<Todo>, Table) {
+    let todos = read_todos_from_json();
+    let mut table = Table::new();
+    table.set_header(vec!["id", "task", "completed"]);
+
+    for todo in &todos {
+        table.add_row(
+            &vec![todo.id.to_string().as_str(), &todo.task, todo.completed.to_string().as_str()]
+        );
+    }
+
+    // println!("{}", table);
+    (todos, table)
+}
+
 fn main() {
+    let options: Vec<&str> = vec![
+        "Add a nwe task",
+        "View all tasks",
+        "Mark a task as completed",
+        "Remove a task",
+        "Edit a task",
+        "Exit"
+    ];
+    let ans: Result<&str, InquireError> = Select::new(
+        "Select what operation you would like to do",
+        options
+    ).prompt();
+
+    match ans {
+        Ok(ans) => {
+            println!("You selected: {}", ans);
+        }
+        Err(_) => println!("Error"),
+    }
+
     let todos = std::fs::read_to_string("todos.json").unwrap();
     let mut todos: Vec<Todo> = serde_json::from_str(&todos).unwrap();
 
