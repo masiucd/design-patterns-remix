@@ -1,3 +1,4 @@
+use comfy_table::Table;
 use serde::{ Serialize, Deserialize };
 
 use serde_json;
@@ -13,9 +14,15 @@ fn main() {
     let todos = std::fs::read_to_string("todos.json").unwrap();
     let todos: Vec<Todo> = serde_json::from_str(&todos).unwrap();
 
+    let mut table = Table::new();
+
+    table.set_header(vec!["id", "task", "completed"]);
+
     for todo in &todos {
-        if todo.id == 1 {
-            println!("Task: {}", todo.task);
-        }
+        table.add_row(
+            &vec![todo.id.to_string().as_str(), &todo.task, todo.completed.to_string().as_str()]
+        );
     }
+
+    println!("{}", table);
 }
