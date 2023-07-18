@@ -53,6 +53,25 @@ impl std::fmt::Display for Option {
     }
 }
 
+fn add_todo() {
+    let title = Text::new("Add the title of the task").prompt();
+    match title {
+        Ok(title) => {
+            let mut todos = read_todos_from_json();
+            let new_task = Todo {
+                id: (todos.len() as u8) + 1,
+                task: title.clone(),
+                completed: false,
+            };
+            todos.push(new_task);
+            let todos = serde_json::to_string(&todos).unwrap();
+            std::fs::write("todos.json", todos).unwrap();
+            println!("Task added successfully with title {}", title);
+        }
+        Err(_) => println!("Error"),
+    }
+}
+
 fn main() {
     let options: Vec<Option> = vec![
         Option::Add,
@@ -73,26 +92,34 @@ fn main() {
             println!("You selected: {}", ans);
             match ans {
                 Option::Add => {
-                    let title = Text::new("Add the title of the task").prompt();
-                    match title {
-                        Ok(title) => {
-                            let mut todos = read_todos_from_json();
-                            let new_task = Todo {
-                                id: (todos.len() as u8) + 1,
-                                task: title.clone(),
-                                completed: false,
-                            };
-                            todos.push(new_task);
-                            let todos = serde_json::to_string(&todos).unwrap();
-                            std::fs::write("todos.json", todos).unwrap();
-                            println!("Task added successfully with title {}", title);
-                        }
-                        Err(_) => println!("Error"),
-                    }
+                    add_todo();
                 }
                 Option::View => {
                     let (_, table) = build_table();
                     println!("{}", table);
+                }
+                Option::Edit => {
+                    let todo_id = Text::new("Select the ID of the todo to edit").prompt();
+                    match todo_id {
+                        Ok(todo_id) => {
+                            let id: u8 = todo_id.parse().expect("Id is not a valid integer");
+                            println!("You selected: {}", id);
+                            let todos = read_todos_from_json();
+                            let todo_to_edit = todos.iter().find(|t| t.id == id);
+                            let todo_to_edit = if todo_to_edit.is_some() {
+                                todo_to_edit.unwrap()
+                            } else {
+                                println!("Todo not found");
+                                return;
+                            };
+                            println!("You selected: {:?}", todo_to_edit);
+                        }
+                        Err(_) => println!("Error"),
+                    }
+                    // find the todo with the id so we can edit
+                    // if found, edit the todo
+                    //              get mor info from the user if user want to edit the task or/and mark as completed.
+                    // if not found, print message to the user
                 }
                 _ => {
                     println!("Coming soon!");
