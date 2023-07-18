@@ -27,8 +27,6 @@ fn build_table() -> (Vec<Todo>, Table) {
             &vec![todo.id.to_string().as_str(), &todo.task, todo.completed.to_string().as_str()]
         );
     }
-
-    // println!("{}", table);
     (todos, table)
 }
 
@@ -75,7 +73,22 @@ fn main() {
             println!("You selected: {}", ans);
             match ans {
                 Option::Add => {
-                    println!("Will add soon");
+                    let title = Text::new("Add the title of the task").prompt();
+                    match title {
+                        Ok(title) => {
+                            let mut todos = read_todos_from_json();
+                            let new_task = Todo {
+                                id: (todos.len() as u8) + 1,
+                                task: title.clone(),
+                                completed: false,
+                            };
+                            todos.push(new_task);
+                            let todos = serde_json::to_string(&todos).unwrap();
+                            std::fs::write("todos.json", todos).unwrap();
+                            println!("Task added successfully with title {}", title);
+                        }
+                        Err(_) => println!("Error"),
+                    }
                 }
                 Option::View => {
                     let (_, table) = build_table();
@@ -103,21 +116,6 @@ fn main() {
     // }
 
     // println!("{}", table);
-
-    // let title = Text::new("Add the title of the task").prompt();
-    // match title {
-    //     Ok(title) => {
-    //         let new_task = Todo {
-    //             id: (todos.len() as u8) + 1,
-    //             task: title,
-    //             completed: false,
-    //         };
-    //         todos.push(new_task);
-    //         let todos = serde_json::to_string(&todos).unwrap();
-    //         std::fs::write("todos.json", todos).unwrap();
-    //     }
-    //     Err(_) => println!("Error"),
-    // }
 
     // let todos = std::fs::read_to_string("todos.json").unwrap();
     // let todos: Vec<Todo> = serde_json::from_str(&todos).unwrap();
