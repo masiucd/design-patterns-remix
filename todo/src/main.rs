@@ -137,18 +137,26 @@ fn main() {
                         "Select what todo to mark",
                         todos.clone()
                     ).prompt();
-                    let mut todo = todo.unwrap_or_else(|e| {
+                    let todo = todo.unwrap_or_else(|e| {
                         println!("Error {}", e);
                         std::process::exit(1);
                     });
-                    todo.completed = true;
-                    let mut new_todos = todos
-                        .into_iter()
-                        .filter(|x| x.id != todo.id)
+                    let todos = todos
+                        .iter()
+                        .map(|t| {
+                            if t.id == todo.id {
+                                Todo {
+                                    id: t.id,
+                                    task: t.task.clone(),
+                                    completed: true,
+                                }
+                            } else {
+                                t.clone()
+                            }
+                        })
                         .collect::<Vec<Todo>>();
-                    new_todos.push(todo);
-                    let new_todos = serde_json::to_string(&new_todos).unwrap();
-                    std::fs::write("todos.json", new_todos).unwrap();
+                    let todos = serde_json::to_string(&todos).unwrap();
+                    std::fs::write("todos.json", todos).unwrap();
                     println!("Task marked as completed");
                 }
                 Option::Remove => {
