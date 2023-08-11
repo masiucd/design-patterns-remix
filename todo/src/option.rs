@@ -62,9 +62,7 @@ pub fn add_todo() {
                 completed: false,
             };
             todos.push(new_task);
-            let todos = serde_json::to_string(&todos).unwrap();
-            std::fs::write("todos.json", todos).unwrap();
-            println!("Task added successfully with title {}", title);
+            write_todos_to_json(todos, "Task added successfully");
         }
         Err(_) => println!("Error"),
     }
@@ -99,20 +97,11 @@ pub fn edit_todo() {
             }
         ))
         .collect::<Vec<Todo>>();
-    let todos = serde_json::to_string(&todos).unwrap();
-    std::fs::write("todos.json", todos).unwrap();
+    write_todos_to_json(todos, "Task edited successfully")
 }
 
 pub fn mark_todo() {
-    let todos = read_todos_from_json();
-    let todo: Result<Todo, InquireError> = Select::new(
-        "Select what todo to toggle",
-        todos.clone()
-    ).prompt();
-    let todo = todo.unwrap_or_else(|e| {
-        println!("Error {}", e);
-        std::process::exit(1);
-    });
+    let (todo, todos) = prompt_todos("Select what todo to toggle");
     let todos = todos
         .iter()
         .map(|t| {
@@ -127,7 +116,31 @@ pub fn mark_todo() {
             }
         })
         .collect::<Vec<Todo>>();
+    write_todos_to_json(todos, "Task toggled successfully");
+}
+
+pub fn remove_todo() {
+    let (todo, todos) = prompt_todos("Select what todo to remove");
+    let todos = todos
+        .into_iter()
+        .filter(|t| t.id != todo.id)
+        .collect::<Vec<Todo>>();
+
+    write_todos_to_json(todos, "Task removed successfully");
+}
+
+fn prompt_todos(message: &str) -> (Todo, Vec<Todo>) {
+    let todos = read_todos_from_json();
+    let todo: Result<Todo, InquireError> = Select::new(message, todos.clone()).prompt();
+    let todo = todo.unwrap_or_else(|e| {
+        println!("Error {}", e);
+        std::process::exit(1);
+    });
+    return (todo, todos);
+}
+
+fn write_todos_to_json(todos: Vec<Todo>, message: &str) {
     let todos = serde_json::to_string(&todos).unwrap();
     std::fs::write("todos.json", todos).unwrap();
-    println!("Task has changed to: {}", todo.completed);
+    println!("{}", message);
 }

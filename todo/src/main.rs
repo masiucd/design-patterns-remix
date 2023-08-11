@@ -7,6 +7,7 @@ use todo::option::{
     build_table,
     edit_todo,
     mark_todo,
+    remove_todo,
 };
 
 fn ask_user_for_options() -> Result<Option, InquireError> {
@@ -19,12 +20,12 @@ fn ask_user_for_options() -> Result<Option, InquireError> {
 
 fn run() {
     let ans = ask_user_for_options();
-
     match ans {
         Ok(ans) => {
             match ans {
                 Option::Add => {
                     add_todo();
+                    run();
                 }
                 Option::View => {
                     let (_, table) = build_table();
@@ -40,7 +41,8 @@ fn run() {
                     run();
                 }
                 Option::Remove => {
-                    println!("Coming soon!");
+                    remove_todo();
+                    run();
                 }
                 Option::Exit => {
                     // exit the program
