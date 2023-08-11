@@ -31,7 +31,7 @@ impl std::fmt::Display for Option {
     }
 }
 
-pub fn read_todos_from_json() -> Vec<Todo> {
+fn read_todos_from_json() -> Vec<Todo> {
     let todos = std::fs::read_to_string("todos.json").unwrap_or_else(|_| String::from("[]"));
     let todos: Vec<Todo> = serde_json::from_str(&todos).unwrap_or_else(|_| vec![]);
     todos

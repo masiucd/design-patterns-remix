@@ -1,14 +1,5 @@
 use inquire::{ InquireError, Select };
-use todo::option::{
-    get_options,
-    Option,
-    read_todos_from_json,
-    add_todo,
-    build_table,
-    edit_todo,
-    mark_todo,
-    remove_todo,
-};
+use todo::option::{ get_options, Option, add_todo, build_table, edit_todo, mark_todo, remove_todo };
 
 fn ask_user_for_options() -> Result<Option, InquireError> {
     let ans: Result<Option, InquireError> = Select::new(
