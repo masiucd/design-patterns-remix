@@ -1,0 +1,30 @@
+# Read Files Rust App
+
+This is a simple Rust application that reads the contents of a text file and prints it to the console.
+
+## Usage
+
+1. Ensure you have Rust installed on your system. If not, you can install it from [rust-lang.org](https://www.rust-lang.org/).
+
+2. Clone this repository to your local machine.
+
+3. Navigate to the project directory.
+
+4. Place the text file you want to read in the project directory and name it `text.txt`.
+
+5. Run the application using the following command:
+
+   ```sh
+   cargo run
+   ```
+
+6. The contents of `text.txt` will be printed to the console.
+
+## Project Structure
+
+- `src/main.rs`: The main Rust file containing the code to read and print the text file.
+- `text.txt`: The text file to be read by the application.
+
+## License
+
+This project is licensed under the MIT License.

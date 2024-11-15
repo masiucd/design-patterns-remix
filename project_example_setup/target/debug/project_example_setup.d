@@ -1,1 +1,0 @@
-/Users/masiu_cd/projects/rust_apps/project_example_setup/target/debug/project_example_setup: /Users/masiu_cd/projects/rust_apps/project_example_setup/src/animals/dog.rs /Users/masiu_cd/projects/rust_apps/project_example_setup/src/animals.rs /Users/masiu_cd/projects/rust_apps/project_example_setup/src/lib.rs /Users/masiu_cd/projects/rust_apps/project_example_setup/src/main.rs

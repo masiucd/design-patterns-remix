@@ -1,2 +1,0 @@
-Hi I am <name> and I am <year> old.
-I am from <country> and I am a <job>.
