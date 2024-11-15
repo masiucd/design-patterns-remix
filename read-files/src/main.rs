@@ -1,4 +1,4 @@
-use std::{ fs, io::{ self, Read, Write } };
+use std::{ fs, io::{ self, Write } };
 
 fn main() {
     let mut file_option = String::new();
