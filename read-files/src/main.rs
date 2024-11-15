@@ -18,17 +18,33 @@ fn main() {
     match file_option.trim() {
         "1" => read_text_file(&file_path.trim()),
         "2" => println!("Binary file"),
-        "3" => println!("JSON file"),
+        "3" => read_json_file(&file_path.trim()),
         "4" => println!("XML file"),
         _ => println!("Invalid option"),
     }
 }
 
 fn read_text_file(file_name: &str) {
-    println!("Reading text file: {}", file_name);
-    let text = fs::read_to_string(file_name);
+    let file = if file_name == "" { "text.txt" } else { file_name };
+    println!("Reading text file: {}", file);
+    let text = fs::read_to_string(file);
     match text {
         Ok(t) => println!("{}", t),
+        Err(e) => println!("Error: {}", e),
+    }
+}
+
+fn read_json_file(file_name: &str) {
+    let file = if file_name == "" { "j.json" } else { file_name };
+    println!("Reading JSON file: {}", file);
+    let json = fs::read_to_string(file);
+    match json {
+        Ok(j) => {
+            // parse json file
+            let parsed: serde_json::Value = serde_json::from_str(&j).expect("Failed to parse JSON");
+            println!("{}", j);
+            println!("{:?}", parsed);
+        }
         Err(e) => println!("Error: {}", e),
     }
 }
