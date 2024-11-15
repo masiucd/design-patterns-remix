@@ -4,12 +4,12 @@
   "pets": [
     {
       "name": "Fido",
-      "type": "dog"
+      "pet_type": "dog"
     },
     {
       "name": "Whiskers",
-      "type": "cat"
+      "pet_type": "cat"
     }
   ],
-  "isStudent": true
+  "is_student": true
 }
