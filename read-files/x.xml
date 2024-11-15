@@ -1,0 +1,8 @@
+<plate-appearance>
+  <pitch speed="95" type="FourSeam" outcome="Ball" />
+  <pitch speed="91" type="FourSeam" outcome="Strike" />
+  <pitch speed="85" type="Changeup" outcome="Ball" />
+  <runner from="First" to="Second" outcome="Steal" />
+  <pitch speed="89" type="Slider" outcome="Strike" />
+  <pitch speed="88" type="Curve" outcome="Hit" />
+</plate-appearance>

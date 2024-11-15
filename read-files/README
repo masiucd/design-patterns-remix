@@ -2,6 +2,9 @@
 
 This is a simple Rust application that reads the contents of a text file and prints it to the console.
 
+It just a simple example of how to read a file in Rust.
+The main purpose of this project is to demonstrate how to read a file in Rust.
+
 ## Usage
 
 1. Ensure you have Rust installed on your system. If not, you can install it from [rust-lang.org](https://www.rust-lang.org/).
