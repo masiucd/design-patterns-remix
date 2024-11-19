@@ -1,0 +1,5 @@
+[workspace]
+members = ["adder", "multiplier", "app"]
+
+# Optional: Define workspace-wide dependencies
+[workspace.dependencies]
